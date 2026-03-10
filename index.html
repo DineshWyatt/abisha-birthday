@@ -861,7 +861,7 @@
         min-height: auto;
       }
     }
-    }
+  
 
     @media (max-width: 900px) {
       .topbar-inner {
@@ -908,6 +908,15 @@
         min-height: auto;
       }
     }
+    .sparkle-title{
+  animation: sparkleGlow 2s ease-in-out infinite;
+}
+
+@keyframes sparkleGlow{
+  0%{ text-shadow:0 0 10px #ff9bd4;}
+  50%{ text-shadow:0 0 30px #ffd700,0 0 40px #ff9bd4;}
+  100%{ text-shadow:0 0 10px #ff9bd4;}
+}
   </style>
 </head>
 <body>
@@ -943,7 +952,7 @@
     <div class="container hero-grid">
       <div class="hero-panel reveal">
         <div class="hero-tag">A small page made only for you</div>
-        <h1>Happy Birthday<br>Abisha</h1>
+        <h1 class="sparkle-title">Happy Birthday<br>Abisha</h1>
         <p class="subtext">
           This is just a simple little thing I made for you — small, but from the heart. ✨💗
         </p>
@@ -1107,5 +1116,45 @@
     }, { threshold: 0.14 });
     revealItems.forEach((el) => observer.observe(el));
   </script>
+  <script>
+window.addEventListener("load", () => {
+
+  const container = document.createElement("div");
+  container.style.position="fixed";
+  container.style.left="0";
+  container.style.bottom="0";
+  container.style.width="100%";
+  container.style.pointerEvents="none";
+  container.style.zIndex="9999";
+
+  for(let i=0;i<8;i++){
+
+    const balloon=document.createElement("div");
+
+    balloon.innerHTML="🎈";
+    balloon.style.position="absolute";
+    balloon.style.fontSize="34px";
+    balloon.style.left=Math.random()*100+"%";
+    balloon.style.bottom="-40px";
+    balloon.style.animation=`rise ${4+Math.random()*2}s linear forwards`;
+
+    container.appendChild(balloon);
+  }
+
+  document.body.appendChild(container);
+
+  setTimeout(()=>{
+    container.remove();
+  },5000);
+
+});
+</script>
+
+<style>
+@keyframes rise{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+</style>
 </body>
 </html>
